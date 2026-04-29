@@ -1,9 +1,9 @@
 "use client";
 
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
+import { NavbarTab } from "@/app/navbar/components/navbar-tab";
 import { useUiStore, type NavTab } from "@/store/ui-store";
 
 const navItems: { key: NavTab; label: string; href: string }[] = [
@@ -29,25 +29,18 @@ export function Navbar() {
 
   return (
     <header className="border-b border-brand-black">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-0 md:px-8">
+      <div className="flex w-full items-center justify-between py-0 pr-4 md:pr-8">
         <nav className="flex items-end">
-          {navItems.map((item) => {
-            const isActive = activeNavTab === item.key;
-            return (
-              <Link
-                key={item.key}
-                href={item.href}
-                onClick={() => setActiveNavTab(item.key)}
-                className={`rounded-t-[24px] border border-brand-dark px-7 py-5 text-base tracking-wide transition ${
-                  isActive
-                    ? "bg-brand-dark text-brand-white"
-                    : "bg-brand-light text-brand-black"
-                }`}
-              >
-                {item.label}
-              </Link>
-            );
-          })}
+          {navItems.map((item) => (
+            <NavbarTab
+              key={item.key}
+              tabKey={item.key}
+              label={item.label}
+              href={item.href}
+              isActive={activeNavTab === item.key}
+              onSelect={setActiveNavTab}
+            />
+          ))}
         </nav>
         <p className="text-xl font-semibold text-brand-white">i got an idea.com</p>
       </div>
