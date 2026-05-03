@@ -1,6 +1,6 @@
 "use client";
 
-import type { BuildTarget } from "@/app/projects/hooks/use-projects-ui";
+import { useProjectsUi, type BuildTarget } from "@/app/projects/hooks/use-projects-ui";
 
 const targets: { value: BuildTarget; label: string }[] = [
   { value: "web", label: "Web" },
@@ -8,12 +8,8 @@ const targets: { value: BuildTarget; label: string }[] = [
   { value: "mobile", label: "Mobile" },
 ];
 
-type WhereIsItProps = {
-  buildTarget: BuildTarget;
-  onBuildTargetChange: (target: BuildTarget) => void;
-};
-
-export function WhereIsIt({ buildTarget, onBuildTargetChange }: WhereIsItProps) {
+export function WhereIsIt() {
+  const { buildTarget, setBuildTarget } = useProjectsUi();
   return (
     <div className="space-y-4">
       <h1 className="text-5xl font-bold">Where is it?</h1>
@@ -27,7 +23,7 @@ export function WhereIsIt({ buildTarget, onBuildTargetChange }: WhereIsItProps) 
               type="radio"
               name="buildTarget"
               checked={buildTarget === target.value}
-              onChange={() => onBuildTargetChange(target.value)}
+              onChange={() => setBuildTarget(target.value)}
               className="h-4 w-4 shrink-0 accent-brand-dark"
             />
             {target.label}

@@ -3,27 +3,13 @@
 import { ProjectIdeasPanel } from "@/app/projects/components/project-ideas-panel";
 import { TheBag } from "@/app/projects/components/the-bag";
 import { WhereIsIt } from "@/app/projects/components/where-is-it";
-import { useProjectsUi } from "@/app/projects/hooks/use-projects-ui";
 
 export default function ProjectsPage() {
-  const {
-    buildTarget,
-    setBuildTarget,
-    activeBagSection,
-    setActiveBagSection,
-  } = useProjectsUi();
-
   return (
     <div className="flex min-h-[calc(100vh-8rem)] w-full flex-row items-stretch gap-5 px-10 py-10">
       <section className="box-border flex w-1/2 min-w-0 flex-none flex-col gap-10 border-r border-r-brand-dark pb-0">
-        <WhereIsIt
-          buildTarget={buildTarget}
-          onBuildTargetChange={setBuildTarget}
-        />
-        <TheBag
-          activeBagSection={activeBagSection}
-          onBagSectionChange={setActiveBagSection}
-        />
+        <WhereIsIt />
+        <TheBag />
       </section>
       <section className="box-border flex min-h-0 w-1/2 min-w-0 flex-none flex-col pt-0">
         <ProjectIdeasPanel />
