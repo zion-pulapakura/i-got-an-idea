@@ -12,7 +12,8 @@ type TheBagProps = {
 
 export function TheBag({ activeBagSection, onBagSectionChange }: TheBagProps) {
   const currentSection =
-    bagSections.find((section) => section.id === activeBagSection) ?? bagSections[0];
+    bagSections.find((section) => section.id === activeBagSection) ??
+    bagSections[0];
 
   return (
     <div className="space-y-4">
