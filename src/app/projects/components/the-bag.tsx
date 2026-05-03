@@ -12,11 +12,11 @@ export function TheBag() {
     bagSections[0];
 
   return (
-    <div className="space-y-4">
-      <h2 className="text-5xl font-bold">The Bag</h2>
-      <div className="grid grid-cols-[140px_1fr] gap-4">
+    <div className="flex min-h-0 flex-1 flex-col gap-4">
+      <h2 className="shrink-0 text-5xl font-bold">The Bag</h2>
+      <div className="grid min-h-0 flex-1 grid-cols-[140px_1fr] gap-4">
         <BagSectionTabs />
-        <div className="pt-1">
+        <div className="min-h-0 overflow-y-auto pt-1">
           <TechnologyPills options={currentSection.options} />
         </div>
       </div>
