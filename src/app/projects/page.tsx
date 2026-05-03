@@ -14,8 +14,8 @@ export default function ProjectsPage() {
   } = useProjectsUi();
 
   return (
-    <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 lg:flex-row lg:items-stretch">
-      <div className="flex min-w-0 flex-1 flex-col gap-10 lg:basis-1/2">
+    <div className="flex w-full flex-col lg:min-h-[calc(100vh-8rem)] lg:flex-row gap-5 px-10 lg:items-stretch py-10">
+      <section className="box-border flex w-full min-w-0 flex-col gap-10 border-b border-brand-dark pb-8 lg:w-[60%] lg:flex-none lg:border-b-0 lg:border-r lg:border-r-brand-dark lg:pb-0">
         <WhereIsIt
           buildTarget={buildTarget}
           onBuildTargetChange={setBuildTarget}
@@ -24,10 +24,10 @@ export default function ProjectsPage() {
           activeBagSection={activeBagSection}
           onBagSectionChange={setActiveBagSection}
         />
-      </div>
-      <div className="flex min-h-0 min-w-0 flex-1 flex-col lg:basis-1/2">
+      </section>
+      <section className="box-border flex min-h-0 w-full min-w-0 flex-colpt-8 lg:w-[40%] lg:flex-none lg:pt-0">
         <ProjectIdeasPanel />
-      </div>
+      </section>
     </div>
   );
 }
