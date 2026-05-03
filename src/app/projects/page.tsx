@@ -14,7 +14,7 @@ export default function ProjectsPage() {
   } = useProjectsUi();
 
   return (
-    <main className="mx-auto flex w-full max-w-7xl flex-1 flex-col px-4 py-8 md:px-8">
+    <main className=" flex w-full max-w-7xl flex-1 flex-col px-4 py-8 md:px-8">
       <section className="grid flex-1 gap-8 lg:grid-cols-[1.6fr_1fr]">
         <div className="space-y-10">
           <WhereIsIt

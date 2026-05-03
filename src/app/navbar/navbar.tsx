@@ -30,14 +30,15 @@ export function Navbar() {
   return (
     <header className="border-b border-brand-black">
       <div className="flex w-full items-center justify-between py-0 pr-4 md:pr-8">
-        <nav className="flex items-end">
-          {navItems.map((item) => (
+        <nav className="flex items-end overflow-visible">
+          {navItems.map((item, index) => (
             <NavbarTab
               key={item.key}
               tabKey={item.key}
               label={item.label}
               href={item.href}
               isActive={activeNavTab === item.key}
+              index={index}
               onSelect={setActiveNavTab}
             />
           ))}
