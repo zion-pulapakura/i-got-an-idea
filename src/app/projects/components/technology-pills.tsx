@@ -12,7 +12,7 @@ export function TechnologyPills({ options }: TechnologyPillsProps) {
       {options.map((option) => (
         <span
           key={option.id}
-          className="rounded-full bg-brand-light px-8 py-2 text-sm font-semibold text-brand-white"
+          className="rounded-full bg-brand-light px-8 py-2 text-sm font-semibold text-brand-dark"
         >
           {option.label}
         </span>

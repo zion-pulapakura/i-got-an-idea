@@ -14,20 +14,20 @@ export default function ProjectsPage() {
   } = useProjectsUi();
 
   return (
-    <main className=" flex w-full max-w-7xl flex-1 flex-col px-4 py-8 md:px-8">
-      <section className="grid flex-1 gap-8 lg:grid-cols-[1.6fr_1fr]">
-        <div className="space-y-10">
-          <WhereIsIt
-            buildTarget={buildTarget}
-            onBuildTargetChange={setBuildTarget}
-          />
-          <TheBag
-            activeBagSection={activeBagSection}
-            onBagSectionChange={setActiveBagSection}
-          />
-        </div>
+    <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 lg:flex-row lg:items-stretch">
+      <div className="flex min-w-0 flex-1 flex-col gap-10 lg:basis-1/2">
+        <WhereIsIt
+          buildTarget={buildTarget}
+          onBuildTargetChange={setBuildTarget}
+        />
+        <TheBag
+          activeBagSection={activeBagSection}
+          onBagSectionChange={setActiveBagSection}
+        />
+      </div>
+      <div className="flex min-h-0 min-w-0 flex-1 flex-col lg:basis-1/2">
         <ProjectIdeasPanel />
-      </section>
-    </main>
+      </div>
+    </div>
   );
 }
