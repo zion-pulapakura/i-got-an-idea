@@ -6,19 +6,38 @@ type BagState = {
   normal: string[];
   incl: string[];
   excl: string[];
-  addToNormal: (id: string) => void;
-  addToIncl: (id: string) => void;
-  addToExcl: (id: string) => void;
+  addToNormal: (tech: string) => void;
+  addToIncl: (tech: string) => void;
+  addToExcl: (tech: string) => void;
+  cycleOptionState: (option: string) => void;
 };
 
-export const useBagStore = create<BagState>((set) => ({
+export const useBagStore = create<BagState>((set, get) => ({
   normal: [],
   incl: [],
   excl: [],
-  addToNormal: (id) =>
-    set((state) => ({ normal: [...state.normal, id] })),
-  addToIncl: (id) =>
-    set((state) => ({ incl: [...state.incl, id] })),
-  addToExcl: (id) =>
-    set((state) => ({ excl: [...state.excl, id] })),
+  addToNormal: (tech) => set((state) => ({ normal: [...state.normal, tech] })),
+  addToIncl: (tech) => set((state) => ({ incl: [...state.incl, tech] })),
+  addToExcl: (tech) => set((state) => ({ excl: [...state.excl, tech] })),
+
+  cycleOptionState: (option) => {
+    const { normal, incl, excl } = get();
+
+    if (normal.includes(option)) {
+      set({
+        normal: normal.filter((t) => t !== option),
+        incl: [...incl, option],
+      });
+    } else if (incl.includes(option)) {
+      set({
+        incl: incl.filter((t) => t !== option),
+        excl: [...excl, option],
+      });
+    } else if (excl.includes(option)) {
+      set({
+        normal: [...normal, option],
+        excl: excl.filter((t) => t !== option),
+      });
+    }
+  },
 }));

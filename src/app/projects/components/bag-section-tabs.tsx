@@ -1,14 +1,14 @@
 "use client";
 
-import { bagSections } from "@/app/projects/data/bag-options";
-import { useProjectsUi } from "@/app/projects/hooks/use-projects-ui";
+import { bag } from "@/app/projects/data/bag-options";
+import { useUiStore } from "@/store/ui-store";
 
 export function BagSectionTabs() {
-  const { activeBagSection, setActiveBagSection } = useProjectsUi();
+  const {activeBagSection, setActiveBagSection} = useUiStore();
 
   return (
     <div className="flex h-full flex-col rounded border border-l-0 border-brand-black">
-      {bagSections.map((section) => {
+      {bag.map((section) => {
         const isActive = section.id === activeBagSection;
         return (
           <button

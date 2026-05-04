@@ -1,6 +1,6 @@
 "use client";
 
-import { useProjectsUi, type BuildTarget } from "@/app/projects/hooks/use-projects-ui";
+import { useUiStore, type BuildTarget } from "@/store/ui-store";
 
 const targets: { value: BuildTarget; label: string }[] = [
   { value: "web", label: "Web" },
@@ -9,7 +9,8 @@ const targets: { value: BuildTarget; label: string }[] = [
 ];
 
 export function WhereIsIt() {
-  const { buildTarget, setBuildTarget } = useProjectsUi();
+  const {buildTarget, setBuildTarget} = useUiStore();
+  
   return (
     <div className="space-y-4">
       <h1 className="text-5xl font-bold">Where is it?</h1>

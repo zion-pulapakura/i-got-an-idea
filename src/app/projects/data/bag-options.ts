@@ -6,13 +6,13 @@ export type BagOption = {
   incompatibleWith?: string[];
 };
 
-type BagSectionConfig = {
+export type BagConfig = {
   id: BagSection;
   label: string;
   options: BagOption[];
 };
 
-export const bagSections: BagSectionConfig[] = [
+export const bag: BagConfig[] = [
   {
     id: "ai-ml",
     label: "AI & ML",

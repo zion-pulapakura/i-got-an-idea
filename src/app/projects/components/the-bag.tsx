@@ -1,15 +1,15 @@
 "use client";
 
-import { bagSections } from "@/app/projects/data/bag-options";
+import { bag } from "@/app/projects/data/bag-options";
 import { BagSectionTabs } from "@/app/projects/components/bag-section-tabs";
 import { TechnologyPills } from "@/app/projects/components/technology-pills";
-import { useProjectsUi } from "@/app/projects/hooks/use-projects-ui";
+import { useUiStore } from "@/store/ui-store";
 
 export function TheBag() {
-  const { activeBagSection } = useProjectsUi();
+  const activeBagSection = useUiStore((s) => s.activeBagSection);
   const currentSection =
-    bagSections.find((section) => section.id === activeBagSection) ??
-    bagSections[0];
+    bag.find((section) => section.id === activeBagSection) ??
+    bag[0];
 
   return (
     <div className="flex min-h-0 flex-1 flex-col gap-4">
