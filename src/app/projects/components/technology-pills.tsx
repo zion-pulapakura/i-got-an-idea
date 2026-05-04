@@ -1,9 +1,9 @@
 "use client";
 
-type PillOption = { id: string; label: string };
+import type { BagOption } from "@/app/projects/data/bag-options";
 
 type TechnologyPillsProps = {
-  options: PillOption[];
+  options: BagOption[];
 };
 
 export function TechnologyPills({ options }: TechnologyPillsProps) {
@@ -11,10 +11,10 @@ export function TechnologyPills({ options }: TechnologyPillsProps) {
     <div className="flex flex-wrap gap-3">
       {options.map((option) => (
         <span
-          key={option.id}
+          key={option.tech}
           className="rounded-full bg-brand-light px-6 py-1 text-sm font-semibold text-brand-dark"
         >
-          {option.label}
+          {option.tech}
         </span>
       ))}
     </div>
