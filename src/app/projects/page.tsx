@@ -6,14 +6,12 @@ import { WhereIsIt } from "@/app/projects/components/where-is-it";
 
 export default function ProjectsPage() {
   return (
-    <div className="flex min-h-full w-full flex-row items-stretch border ">
-      <section className="box-border flex w-1/2 flex-none flex-col border-r-brand-dark">
-        <div className="">
-          <WhereIsIt />
-        </div>
+    <div className="flex min-h-full w-full flex-row items-stretch">
+      <section className=" flex w-1/2 flex-none flex-col gap-10 pr-10 border-r-brand-dark border-r">
+        <WhereIsIt />
         <TheBag />
       </section>
-      <section className="box-border flex h-full w-1/2 flex-none flex-col">
+      <section className="flex w-1/2 flex-none flex-col pl-10">
         <ProjectIdeasPanel />
       </section>
     </div>

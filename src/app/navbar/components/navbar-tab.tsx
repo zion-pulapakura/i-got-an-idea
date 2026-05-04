@@ -21,7 +21,9 @@ export function NavbarTab({
   index,
   onSelect,
 }: NavbarTabProps) {
-  const fillColor = isActive ? "#373737" : "#A0A0A0";
+  const fillColor = isActive
+    ? "var(--color-brand-dark)"
+    : "var(--color-brand-grey)";
   const textColor = isActive ? "text-brand-white" : "text-brand-black";
 
   return (
@@ -41,7 +43,7 @@ export function NavbarTab({
         <path
           d="M 0 0 H 204 A 64 64 0 0 1 268 64 H 0 Z"
           fill={fillColor}
-          stroke="black"
+          stroke="var(--color-brand-black)"
           strokeWidth="1.5"
         />
       </svg>
