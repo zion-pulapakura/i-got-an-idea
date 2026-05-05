@@ -13,6 +13,8 @@
   --color-brand-white: #ffffff;
   --color-brand-grey: #a0a0a0;
   --color-brand-accent: #ffc3ad;
+  --color-pill-incl: #1f8a4c;
+  --color-pill-excl: #c62828;
 }
 
 body {

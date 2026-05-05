@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import type { BagOption } from "@/app/projects/data/bag-options";
 import cycleOptionState from "../utils/cycleOptionState";
 import { useBagStore, type OptionState } from "@/store/bagstore";
+import findDependents from "../utils/findDependents";
 
 type TechnologyPillsProps = {
   options: BagOption[];
@@ -17,16 +18,14 @@ function pillClasses(state: OptionState): string | undefined {
     case "normal":
       return `${base} border-transparent bg-brand-light text-brand-dark`;
     case "incl":
-      return `${base} border-emerald-600/50 bg-emerald-500/20 text-emerald-950`;
+      return `${base} border-transparent bg-pill-incl text-brand-light`;
     case "excl":
-      return `${base} border-red-600/50 bg-red-500/20 text-red-950`;
+      return `${base} border-transparent bg-pill-excl text-brand-light`;
   }
 }
 
 export function TechnologyPills({ options }: TechnologyPillsProps) {
-  const items = useBagStore((s) => s.items);
-  const setItem = useBagStore((s) => s.setItem);
-  const findTechState = useBagStore((s) => s.findTechState);
+  const { setItem, findTechState } = useBagStore();
 
   useEffect(() => {}, [options]);
 
@@ -34,7 +33,7 @@ export function TechnologyPills({ options }: TechnologyPillsProps) {
     <div className="flex flex-wrap gap-3">
       {options.map((option) => {
         const state = findTechState(option.tech);
-          
+
         return (
           <button
             type="button"
@@ -43,6 +42,19 @@ export function TechnologyPills({ options }: TechnologyPillsProps) {
             onClick={() => {
               const newState = cycleOptionState(state);
               setItem({ tech: option.tech, state: newState });
+
+              // if the selected tech has another tech which it depends on
+              if (option.requires && newState === "incl") {
+                setItem({ tech: option.requires, state: newState });
+              }
+
+              // if the selected tech has tech which depends on it
+              const dependents = findDependents(option.tech);
+              if (dependents.length > 0 && newState === "excl") {
+                dependents.forEach((dependent) => {
+                  setItem({ tech: dependent.tech, state: "excl" });
+                });
+              }
             }}
           >
             {option.tech}
