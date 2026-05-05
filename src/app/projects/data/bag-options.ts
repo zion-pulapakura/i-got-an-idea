@@ -1,70 +1,74 @@
 import type { BagSection } from "@/store/ui-store";
 
+export type OptionState = "normal" | "incl" | "excl";
+
 export type BagOption = {
   tech: string;
-  requires?: string[];
+  state: OptionState;
+  requires?: string;
   incompatibleWith?: string[];
 };
 
 export type BagConfig = {
-  id: BagSection;
-  label: string;
+  type: BagSection;
   options: BagOption[];
 };
 
+function opt(
+  tech: string,
+  extra?: { requires?: string; incompatibleWith?: string[] },
+): BagOption {
+  return { tech, state: "normal", ...extra };
+}
+
 export const bag: BagConfig[] = [
   {
-    id: "ai-ml",
-    label: "AI & ML",
+    type: "AI & ML",
     options: [
-      { tech: "Python" },
-      { tech: "Machine Learning" },
-      { tech: "Natural Language Processing" },
-      { tech: "Sentiment Analysis" },
-      { tech: "Retrieval-Augmented Generation" },
-      { tech: "Computer Vision" },
-      { tech: "OpenAI API" },
-      { tech: "LangChain" },
-      { tech: "NLTK", requires: ["Python"] },
-      { tech: "MediaPipe" },
-      { tech: "OpenCV" },
-      { tech: "PyTorch", requires: ["Python"] },
-      { tech: "TensorFlow", requires: ["Python"] },
+      opt("Python"),
+      opt("Machine Learning"),
+      opt("Natural Language Processing"),
+      opt("Sentiment Analysis"),
+      opt("Retrieval-Augmented Generation"),
+      opt("Computer Vision"),
+      opt("OpenAI API"),
+      opt("LangChain"),
+      opt("NLTK", { requires: "Python" }),
+      opt("MediaPipe"),
+      opt("OpenCV"),
+      opt("PyTorch", { requires: "Python" }),
+      opt("TensorFlow", { requires: "Python" }),
     ],
   },
   {
-    id: "frontend",
-    label: "FRONTEND",
+    type: "FRONTEND",
     options: [
-      { tech: "JavaScript" },
-      { tech: "TypeScript" },
-      { tech: "React", requires: ["Vite.js"] },
-      { tech: "Vite.js" },
-      { tech: "Material-UI", requires: ["React"] },
-      { tech: "Chakra-UI", requires: ["React"] },
-      { tech: "Tailwind CSS" },
+      opt("JavaScript"),
+      opt("TypeScript"),
+      opt("React", { requires: "Vite.js" }),
+      opt("Vite.js"),
+      opt("Material-UI", { requires: "React" }),
+      opt("Chakra-UI", { requires: "React" }),
+      opt("Tailwind CSS"),
     ],
   },
   {
-    id: "backend",
-    label: "BACKEND",
+    type: "BACKEND",
     options: [
-      { tech: "Node.js" },
-      { tech: "Express", requires: ["Node.js"] },
-      { tech: "FastAPI", requires: ["Python"] },
-      { tech: "MongoDB" },
-      { tech: "Mongoose", requires: ["MongoDB", "Node.js"] },
+      opt("Node.js"),
+      opt("Express", { requires: "Node.js" }),
+      opt("FastAPI", { requires: "Python" }),
+      opt("MongoDB"),
     ],
   },
   {
-    id: "other",
-    label: "OTHER",
+    type: "OTHER",
     options: [
-      { tech: "Chroma DB" },
-      { tech: "Pygame", requires: ["Python"] },
-      { tech: "Docker" },
-      { tech: "Postgres" },
-      { tech: "Redis" },
+      opt("Chroma DB"),
+      opt("Pygame", { requires: "Python" }),
+      opt("Docker"),
+      opt("Postgres"),
+      opt("Redis"),
     ],
   },
 ];

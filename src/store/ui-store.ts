@@ -4,7 +4,7 @@ import { create } from "zustand";
 
 export type NavTab = "projects" | "videos" | "articles";
 export type BuildTarget = "web" | "application" | "mobile";
-export type BagSection = "ai-ml" | "frontend" | "backend" | "other";
+export type BagSection = "AI & ML" | "FRONTEND" | "BACKEND" | "OTHER";
 
 type UiState = {
   activeNavTab: NavTab;
@@ -18,7 +18,7 @@ type UiState = {
 export const useUiStore = create<UiState>((set) => ({
   activeNavTab: "projects",
   buildTarget: "web",
-  activeBagSection: "ai-ml",
+  activeBagSection: "AI & ML",
   setActiveNavTab: (tab) => set({ activeNavTab: tab }),
   setBuildTarget: (target) => set({ buildTarget: target }),
   setActiveBagSection: (section) => set({ activeBagSection: section }),
