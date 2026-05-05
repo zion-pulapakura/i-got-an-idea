@@ -2,13 +2,15 @@
 
 import { useEffect } from "react";
 
-import type { BagOption, OptionState } from "@/app/projects/data/bag-options";
+import type { BagOption } from "@/app/projects/data/bag-options";
+import cycleOptionState from "../utils/cycleOptionState";
+import { useBagStore, type OptionState } from "@/store/bagstore";
 
 type TechnologyPillsProps = {
   options: BagOption[];
 };
 
-function pillClasses(state: OptionState): string {
+function pillClasses(state: OptionState): string | undefined {
   const base =
     "rounded-full border px-6 py-1 text-sm font-semibold transition-colors";
   switch (state) {
@@ -22,20 +24,31 @@ function pillClasses(state: OptionState): string {
 }
 
 export function TechnologyPills({ options }: TechnologyPillsProps) {
+  const items = useBagStore((s) => s.items);
+  const setItem = useBagStore((s) => s.setItem);
+  const findTechState = useBagStore((s) => s.findTechState);
+
   useEffect(() => {}, [options]);
 
   return (
     <div className="flex flex-wrap gap-3">
-      {options.map((option) => (
-        <button
-          type="button"
-          key={option.tech}
-          className={pillClasses(option.state)}
-        
-        >
-          {option.tech}
-        </button>
-      ))}
+      {options.map((option) => {
+        const state = findTechState(option.tech);
+          
+        return (
+          <button
+            type="button"
+            key={option.tech}
+            className={pillClasses(state)}
+            onClick={() => {
+              const newState = cycleOptionState(state);
+              setItem({ tech: option.tech, state: newState });
+            }}
+          >
+            {option.tech}
+          </button>
+        );
+      })}
     </div>
   );
 }
