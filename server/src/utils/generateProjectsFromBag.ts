@@ -13,18 +13,15 @@ export async function generateProjectsFromBag(
   normalTech: string[],
 ): Promise<GeneratedProject[]> {
   const prompt = `
-You are a senior software architect helping brainstorm project ideas.
-
-Create exactly 3 project ideas.
-
 Rules:
 1) Every project MUST include all of these required technologies:
 ${JSON.stringify(includedTech)}
 2) You may choose additional technologies only from this allowed pool:
 ${JSON.stringify(normalTech)}
 3) Try to make the chosen additional technologies as unique as possible across the 3 projects.
-4) Keep each project practical and coherent.
-5) Respect these user tips:
+4) Keep each project practical.
+5) The description should consist of 1 sentence on what exactly the project does and 1 sentence on rougly how its done, without actually mentioning the technologies used. (Doesn't have to explicity be 2 sentences, but should have both of those requirements)
+6) Respect these user tips:
 ${tips || "No extra tips provided."}
 
 Return strict JSON only (no markdown) with this shape:
@@ -33,8 +30,7 @@ Return strict JSON only (no markdown) with this shape:
     {
       "title": "string",
       "description": "string",
-      "includedTech": ["string"],
-      "normalTechUsed": ["string"]
+      "techUsed": ["string"],
     }
   ]
 }
@@ -62,6 +58,6 @@ Return strict JSON only (no markdown) with this shape:
   if (!Array.isArray(parsed.projects) || parsed.projects.length !== 3) {
     throw new Error("OpenAI response did not contain exactly 3 projects.");
   }
-  
+
   return parsed.projects;
 }

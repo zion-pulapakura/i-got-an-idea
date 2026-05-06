@@ -1,7 +1,9 @@
 "use client";
 
 import { useState } from "react";
+
 import { generateProjects } from "../api/generateProjects";
+import { ProjectCarousel } from "./project-carousel";
 
 export function ProjectIdeasPanel() {
   const [projectTips, setProjectTips] = useState("");
@@ -21,21 +23,7 @@ export function ProjectIdeasPanel() {
       >
         GENERATE
       </button>
-      <div className="relative min-h-0 flex-1 rounded-xl bg-brand-light p-4 text-brand-dark">
-        <h3 className="text-2xl font-semibold">Project 1</h3>
-        <button
-          type="button"
-          className="absolute top-1/2 left-[-14px] flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-brand-dark text-lg text-brand-white"
-        >
-          {"<"}
-        </button>
-        <button
-          type="button"
-          className="absolute top-1/2 right-[-14px] flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-brand-dark text-lg text-brand-white"
-        >
-          {">"}
-        </button>
-      </div>
+      <ProjectCarousel />
     </aside>
   );
 }
