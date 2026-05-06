@@ -62,6 +62,6 @@ Return strict JSON only (no markdown) with this shape:
   if (!Array.isArray(parsed.projects) || parsed.projects.length !== 3) {
     throw new Error("OpenAI response did not contain exactly 3 projects.");
   }
-
+  
   return parsed.projects;
 }

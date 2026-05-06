@@ -7,15 +7,12 @@ export async function generateProjects(tips: string) {
     throw new Error("Missing NEXT_PUBLIC_API_BASE_URL");
   }
 
-  console.log(`${API_BASE_URL}/gen/proj`);
   const res = await fetch(`${API_BASE_URL}/gen/proj`, {
     method: "POST",
     mode: "cors",
     headers: getHeaders(),
     body: JSON.stringify({ tips, bag: loadBagIntoPayload() }),
   });
-
-  console.log('ok')
 
   if (!res.ok) {
     const text = await res.text();
