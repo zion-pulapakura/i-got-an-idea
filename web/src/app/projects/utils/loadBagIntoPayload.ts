@@ -1,4 +1,4 @@
-import { useBagStore } from "@/store/bagstore";
+import { useBagStore } from "@/app/projects/store/bag-store";
 
 export function loadBagIntoPayload() {
   const items = useBagStore.getState().items;

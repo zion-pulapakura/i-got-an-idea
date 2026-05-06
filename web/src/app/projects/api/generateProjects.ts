@@ -1,8 +1,12 @@
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
-import { loadBagIntoPayload } from "../utils/loadBagIntoPayload";
 import getHeaders from "@/app/utils/getHeaders";
+import type { GeneratedProject } from "@/app/projects/store/projects-store";
 
-export async function generateProjects(tips: string) {
+import { loadBagIntoPayload } from "../utils/loadBagIntoPayload";
+
+export async function generateProjects(
+  tips: string,
+): Promise<GeneratedProject[]> {
   if (!API_BASE_URL) {
     throw new Error("Missing NEXT_PUBLIC_API_BASE_URL");
   }
@@ -19,6 +23,6 @@ export async function generateProjects(tips: string) {
     throw new Error(`POST /gen/proj failed (${res.status}): ${text}`);
   }
 
-  const data = await res.json();
+  const data = (await res.json()) as { projects: GeneratedProject[] };
   return data.projects;
 }

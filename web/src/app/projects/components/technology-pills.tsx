@@ -4,7 +4,7 @@ import { useEffect } from "react";
 
 import type { BagOption } from "@/app/projects/data/bag-options";
 import cycleOptionState from "../utils/cycleOptionState";
-import { useBagStore, type OptionState } from "@/store/bagstore";
+import { useBagStore, type OptionState } from "@/app/projects/store/bag-store";
 import findDependents from "../utils/findDependents";
 
 type TechnologyPillsProps = {

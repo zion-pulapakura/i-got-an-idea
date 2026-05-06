@@ -1,5 +1,5 @@
 import { bag } from "@/app/projects/data/bag-options";
-import { useBagStore } from "@/store/bagstore";
+import { useBagStore } from "@/app/projects/store/bag-store";
 
 export function loadBagIntoState() {
   useBagStore.setState({ items: [] });

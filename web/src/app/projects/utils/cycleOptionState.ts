@@ -1,4 +1,4 @@
-import type { OptionState } from "@/store/bagstore";
+import type { OptionState } from "@/app/projects/store/bag-store";
 
 const cycleOptionState = (state: OptionState): OptionState => {
   switch (state) {

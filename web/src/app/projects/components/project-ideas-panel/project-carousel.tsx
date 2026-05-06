@@ -1,15 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useProjectsStore } from "@/app/projects/store/projects-store";
 
 import { CarouselNavButton } from "./carousel-nav-button";
-import type { GeneratedProject } from ".";
 
-type Props = {
-  projects: GeneratedProject[];
-};
-
-export function ProjectCarousel({ projects }: Props) {
+export function ProjectCarousel() {
+  const projects = useProjectsStore((s) => s.generatedProjects);
   const slideCount = projects.length > 0 ? projects.length : 1;
 
   const [activeIndex, setActiveIndex] = useState(0);
