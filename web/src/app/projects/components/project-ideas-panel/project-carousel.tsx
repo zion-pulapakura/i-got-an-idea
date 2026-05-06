@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 import { useProjectsStore } from "@/app/projects/store/projects-store";
 
-import { explainProject } from "../../api/explainProject";
 import { CarouselNavButton } from "./carousel-nav-button";
+import { ExplainButton } from "./explain-button";
 
 export function ProjectCarousel() {
   const projects = useProjectsStore((s) => s.generatedProjects);
@@ -52,13 +52,7 @@ export function ProjectCarousel() {
                     </span>
                   ))}
                 </div>
-                <button
-                  type="button"
-                  className="mt-3 inline-flex w-fit items-center justify-center rounded-lg border border-brand-black/20 bg-brand-light px-3 py-1 text-xs font-semibold text-brand-dark/90 hover:bg-brand-white"
-                  onClick={() => explainProject(project.title)}
-                >
-                  Explain more
-                </button>
+                <ExplainButton projectTitle={project.title} />
               </section>
             );
           })}
