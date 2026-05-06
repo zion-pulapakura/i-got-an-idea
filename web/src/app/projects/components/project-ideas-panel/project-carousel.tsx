@@ -20,7 +20,7 @@ export function ProjectCarousel() {
   };
 
   return (
-    <div className="relative min-h-0 flex-1 overflow-hidden rounded-xl bg-brand-light text-brand-dark">
+    <div className="relative min-h-0 flex-1 rounded-xl bg-brand-light text-brand-dark">
       <div className="min-h-[120px] h-full overflow-hidden">
         <div
           className="flex h-full transition-[transform] duration-500 ease-[cubic-bezier(0.33,1,0.68,1)] motion-reduce:transition-none"

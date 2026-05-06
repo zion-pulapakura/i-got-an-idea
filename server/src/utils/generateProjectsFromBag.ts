@@ -22,6 +22,7 @@ ${JSON.stringify(normalTech)}
 5) The description should consist of 1 sentence on what exactly the project does and 1 sentence on rougly how its done, without actually mentioning the technologies used. (Doesn't have to explicity be 2 sentences, but should have both of those requirements)
 6) Respect these user tips:
 ${tips || "No extra tips provided."}
+7) Make sure you include all of the included and normal technologies in the returned projects 'techUsed' array.
 
 Return strict JSON only (no markdown) with this shape:
 {

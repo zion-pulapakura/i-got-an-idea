@@ -18,7 +18,7 @@ export const useProjectsStore = create<ProjectsStoreState>((set) => ({
     {
       title: "Project Idea",
       description: "This project does something",
-      techUsed: ["Tech", "Tech"],
+      techUsed: ["Tech used",],
     },
   ],
   setGeneratedProjects: (projects) => set({ generatedProjects: projects }),
