@@ -8,9 +8,9 @@ const generateProjectController = async (req: Request, res: Response) => {
       tips: string;
     };
 
-    const projects = await generateProjectsFromBag(tips, bag.incl, bag.normal);
+    const response = await generateProjectsFromBag(tips, bag.incl, bag.normal);
 
-    res.status(200).json({ projects });
+    res.status(200).json(response);
   } catch (error) {
     res.status(500).json({ error: error });
   }

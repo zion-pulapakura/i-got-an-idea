@@ -13,7 +13,7 @@ type Props = {
 
 export function GenerateButton({ tips }: Props) {
   const [isGenerating, setIsGenerating] = useState(false);
-  const setGeneratedProjects = useProjectsStore((s) => s.setGeneratedProjects);
+  const { setGeneratedProjects, setOpenAiId } = useProjectsStore();
 
   return (
     <button
@@ -23,8 +23,9 @@ export function GenerateButton({ tips }: Props) {
       onClick={async () => {
         try {
           setIsGenerating(true);
-          const projects = await generateProjects(tips);
+          const { projects, id } = await generateProjects(tips);
           setGeneratedProjects(projects);
+          setOpenAiId(id);
         } finally {
           setIsGenerating(false);
         }

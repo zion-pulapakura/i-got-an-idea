@@ -10,7 +10,7 @@ export async function generateProjectsFromBag(
   tips: string,
   includedTech: string[],
   normalTech: string[],
-): Promise<GeneratedProject[]> {
+) {
   const instruction = `You are a senior software architect helping brainstorm project ideas.
 
 Create exactly 3 project ideas.
@@ -53,5 +53,5 @@ Return strict JSON only (no markdown) with this shape:
     throw new Error("OpenAI response did not contain exactly 3 projects.");
   }
 
-  return parsed.projects as GeneratedProject[];
+  return { projects: parsed.projects as GeneratedProject[], id: response.id };
 }

@@ -4,9 +4,7 @@ import type { GeneratedProject } from "@/app/projects/store/projects-store";
 
 import { loadBagIntoPayload } from "../utils/loadBagIntoPayload";
 
-export async function generateProjects(
-  tips: string,
-): Promise<GeneratedProject[]> {
+export async function generateProjects(tips: string) {
   if (!API_BASE_URL) {
     throw new Error("Missing NEXT_PUBLIC_API_BASE_URL");
   }
@@ -23,6 +21,9 @@ export async function generateProjects(
     throw new Error(`POST /gen/proj failed (${res.status}): ${text}`);
   }
 
-  const data = (await res.json()) as { projects: GeneratedProject[] };
-  return data.projects;
+  const data = (await res.json()) as {
+    projects: GeneratedProject[];
+    id: string;
+  };
+  return data;
 }
