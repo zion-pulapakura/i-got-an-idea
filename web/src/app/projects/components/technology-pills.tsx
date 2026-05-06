@@ -7,7 +7,7 @@ import cycleOptionState from "../utils/cycleOptionState";
 import { useBagStore, type OptionState } from "@/app/projects/store/bag-store";
 import findDependents from "../utils/findDependents";
 
-type TechnologyPillsProps = {
+type Props = {
   options: BagOption[];
 };
 
@@ -24,7 +24,7 @@ function pillClasses(state: OptionState): string | undefined {
   }
 }
 
-export function TechnologyPills({ options }: TechnologyPillsProps) {
+export function TechnologyPills({ options }: Props) {
   const { setItem, findTechState } = useBagStore();
 
   useEffect(() => {}, [options]);

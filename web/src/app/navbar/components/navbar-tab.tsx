@@ -4,7 +4,7 @@ import Link from "next/link";
 
 import type { NavTab } from "@/store/ui-store";
 
-type NavbarTabProps = {
+type Props = {
   tabKey: NavTab;
   label: string;
   href: string;
@@ -20,7 +20,7 @@ export function NavbarTab({
   isActive,
   index,
   onSelect,
-}: NavbarTabProps) {
+}: Props) {
   const fillColor = isActive
     ? "var(--color-brand-dark)"
     : "var(--color-brand-grey)";
@@ -37,7 +37,11 @@ export function NavbarTab({
         viewBox="0 0 274 64"
         preserveAspectRatio="none"
         className="absolute h-full w-full"
-        style={isActive ? { filter: "drop-shadow(10px 0 14px rgba(0,0,0,0.35))" } : undefined}
+        style={
+          isActive
+            ? { filter: "drop-shadow(10px 0 14px rgba(0,0,0,0.35))" }
+            : undefined
+        }
         aria-hidden="true"
       >
         <path
