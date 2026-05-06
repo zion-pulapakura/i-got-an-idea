@@ -2,11 +2,18 @@
 
 import { useState } from "react";
 
-import { generateProjects } from "../api/generateProjects";
+import { generateProjects } from "../../api/generateProjects";
 import { ProjectCarousel } from "./project-carousel";
+
+export type GeneratedProject = {
+  title: string;
+  description: string;
+  techUsed: string[];
+};
 
 export function ProjectIdeasPanel() {
   const [projectTips, setProjectTips] = useState("");
+  const [projects, setProjects] = useState<GeneratedProject[]>([]);
 
   return (
     <aside className="flex h-full min-h-0 flex-1 flex-col gap-3">
@@ -19,11 +26,15 @@ export function ProjectIdeasPanel() {
       <button
         type="button"
         className="w-full shrink-0 rounded-xl bg-brand-dark py-3 text-base font-semibold tracking-[0.4em] text-brand-white"
-        onClick={() => generateProjects(projectTips)}
+        onClick={() => {
+          generateProjects(projectTips).then((projects) =>
+            setProjects(projects),
+          );
+        }}
       >
         GENERATE
       </button>
-      <ProjectCarousel />
+      <ProjectCarousel projects={projects} />
     </aside>
   );
 }

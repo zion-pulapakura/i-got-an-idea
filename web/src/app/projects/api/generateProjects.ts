@@ -20,6 +20,5 @@ export async function generateProjects(tips: string) {
   }
 
   const data = await res.json();
-  console.log(data);
   return data.projects;
 }

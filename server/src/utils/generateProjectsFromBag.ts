@@ -2,9 +2,8 @@ import client from "../config/openai";
 
 export type GeneratedProject = {
   title: string;
-  summary: string;
-  includedTech: string[];
-  normalTechUsed: string[];
+  description: string;
+  techUsed: string[];
 };
 
 export async function generateProjectsFromBag(
@@ -54,10 +53,10 @@ Return strict JSON only (no markdown) with this shape:
     throw new Error("OpenAI returned an empty response.");
   }
 
-  const parsed = JSON.parse(content) as { projects?: GeneratedProject[] };
+  const parsed = JSON.parse(content) as { projects?: unknown };
   if (!Array.isArray(parsed.projects) || parsed.projects.length !== 3) {
     throw new Error("OpenAI response did not contain exactly 3 projects.");
   }
 
-  return parsed.projects;
+  return parsed.projects as GeneratedProject[];
 }

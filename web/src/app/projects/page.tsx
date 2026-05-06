@@ -21,7 +21,6 @@ export default function ProjectsPage() {
       <section className="flex w-1/2 flex-none flex-col pl-10">
         <ProjectIdeasPanel />
       </section>
-
     </div>
   );
 }
