@@ -1,6 +1,6 @@
 import { useBagStore } from "@/store/bagstore";
 
-export function loadBagIntoPayload(): string[] {
+export function loadBagIntoPayload() {
   const items = useBagStore.getState().items;
 
   const incl = items
@@ -10,5 +10,5 @@ export function loadBagIntoPayload(): string[] {
     .filter((item) => item.state === "normal")
     .map((item) => item.tech);
 
-  return [...new Set([...incl, ...normal])];
+  return { incl, normal };
 }

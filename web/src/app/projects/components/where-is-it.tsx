@@ -18,7 +18,7 @@ export function WhereIsIt() {
         {targets.map((target) => (
           <label
             key={target.value}
-            className="flex cursor-pointer items-center gap-2 text-xl "
+            className="flex items-center gap-2 text-xl "
           >
             <input
               type="radio"
