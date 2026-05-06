@@ -7,13 +7,10 @@ import { CarouselNavButton } from "./carousel-nav-button";
 
 export function ProjectCarousel() {
   const projects = useProjectsStore((s) => s.generatedProjects);
-  const slideCount = projects.length > 0 ? projects.length : 1;
-
+  const slideCount = projects.length;
   const [activeIndex, setActiveIndex] = useState(0);
 
-  useEffect(() => {
-    setActiveIndex(0);
-  }, [projects]);
+  useEffect(() => setActiveIndex(0), [projects]);
 
   const go = (direction: -1 | 1) => {
     setActiveIndex((i) => {
@@ -36,41 +33,24 @@ export function ProjectCarousel() {
             const project = projects[i];
             return (
               <section
-                key={
-                  project
-                    ? `${project.title}-${project.description}-${i}`
-                    : `placeholder-${i}`
-                }
+                key={`project-${i}`}
                 className="flex h-full min-h-0 shrink-0 flex-col gap-3 p-4"
                 style={{ width: `${100 / slideCount}%` }}
               >
-                {!project ? (
-                  <>
-                    <h3 className="text-2xl font-semibold">Project ideas</h3>
-                    <p className="text-sm text-brand-dark/80">
-                      Tap Generate to see three tailored project ideas here.
-                    </p>
-                  </>
-                ) : (
-                  <>
-                    <h3 className="text-2xl font-semibold">{project.title}</h3>
-                    <p className="text-sm leading-relaxed text-brand-dark/90">
-                      {project.description}
-                    </p>
-                    {(project.techUsed ?? []).length > 0 ? (
-                      <div className="flex flex-wrap gap-2 pt-1">
-                        {(project.techUsed ?? []).map((tech) => (
-                          <span
-                            key={`${project.title}-${tech}`}
-                            className="rounded-full border border-brand-dark/15 bg-brand-white px-3 py-1 text-xs font-semibold text-brand-dark"
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                    ) : null}
-                  </>
-                )}
+                <h3 className="text-2xl font-semibold">{project.title}</h3>
+                <p className="text-sm leading-relaxed text-brand-dark/90">
+                  {project.description}
+                </p>
+                <div className="flex flex-wrap gap-2 pt-1">
+                  {project.techUsed.map((tech) => (
+                    <span
+                      key={`${project.title}-${tech}`}
+                      className="rounded-full border border-brand-dark/15 bg-brand-white px-3 py-1 text-xs font-semibold text-brand-dark"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
               </section>
             );
           })}

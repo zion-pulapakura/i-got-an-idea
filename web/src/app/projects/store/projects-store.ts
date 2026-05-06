@@ -14,6 +14,12 @@ type ProjectsStoreState = {
 };
 
 export const useProjectsStore = create<ProjectsStoreState>((set) => ({
-  generatedProjects: [],
+  generatedProjects: [
+    {
+      title: "Project Idea",
+      description: "This project does something",
+      techUsed: ["Tech", "Tech"],
+    },
+  ],
   setGeneratedProjects: (projects) => set({ generatedProjects: projects }),
 }));
