@@ -1,13 +1,16 @@
+"use client";
+
 import type { MediaItem } from "../api/fetchLatestNews";
+import { useMediaUiStore } from "../store/media-ui-store";
 import { MediaStoryCard } from "./media-story-card";
 
-type MediaStoriesPanelProps = {
-  loading: boolean;
-  error: string | null;
+type Props = {
   items: MediaItem[];
 };
 
-export function MediaStoriesPanel({ loading, error, items }: MediaStoriesPanelProps) {
+export function MediaStoriesPanel({ items }: Props) {
+  const loading = useMediaUiStore((s) => s.loading);
+  const error = useMediaUiStore((s) => s.error);
   const hasItems = items.length > 0;
 
   return (

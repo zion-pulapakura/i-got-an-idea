@@ -1,15 +1,17 @@
-type MediaErrorBannerProps = {
-  message: string | null;
-};
+"use client";
 
-export function MediaErrorBanner({ message }: MediaErrorBannerProps) {
-  if (!message) {
+import { useMediaUiStore } from "../store/media-ui-store";
+
+export function MediaErrorBanner() {
+  const { error } = useMediaUiStore();
+
+  if (!error) {
     return null;
   }
 
   return (
     <p className="mt-5 rounded-lg border border-red-300 bg-red-100 px-3 py-2 text-sm text-red-800">
-      {message}
+      {error}
     </p>
   );
 }

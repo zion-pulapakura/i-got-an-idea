@@ -1,11 +1,11 @@
 import type { MediaItem } from "../api/fetchLatestNews";
-import { formatPublishedAt } from "./format-published-at";
+import { formatPublishedDate } from "./format-published-date";
 
-type MediaStoryCardProps = {
+type Props = {
   item: MediaItem;
 };
 
-export function MediaStoryCard({ item }: MediaStoryCardProps) {
+export function MediaStoryCard({ item }: Props) {
   return (
     <li className="rounded-lg border border-brand-black/20 bg-white p-4">
       <p className="text-xs uppercase tracking-[0.2em] text-brand-dark/70">{item.source}</p>
@@ -18,7 +18,7 @@ export function MediaStoryCard({ item }: MediaStoryCardProps) {
         {item.title}
       </a>
       <p className="mt-1 text-xs text-brand-dark/70">
-        {formatPublishedAt(item.publishedAt)}
+        {formatPublishedDate(item.publishedAt)}
         {item.author ? ` - ${item.author}` : ""}
       </p>
     </li>

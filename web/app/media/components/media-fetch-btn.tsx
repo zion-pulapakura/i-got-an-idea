@@ -1,12 +1,25 @@
-import { Loader } from "../../components/loader";
+"use client";
 
-type MediaFetchActionsProps = {
-  selectedCountLabel: string;
-  loading: boolean;
+import { useMemo } from "react";
+
+import { Loader } from "../../components/loader";
+import { useMediaUiStore } from "../store/media-ui-store";
+
+type Props = {
   onFetch: () => void;
 };
 
-export function MediaFetchBtn({ selectedCountLabel, loading, onFetch }: MediaFetchActionsProps) {
+export function MediaFetchBtn({ onFetch }: Props) {
+  const loading = useMediaUiStore((s) => s.loading);
+  const count = useMediaUiStore((s) => s.selectedSources.length);
+
+  const selectedCountLabel = useMemo(() => {
+    if (count === 1) {
+      return "1 source selected";
+    }
+    return `${count} sources selected`;
+  }, [count]);
+
   return (
     <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
       <span className="text-sm text-brand-dark/80">{selectedCountLabel}</span>

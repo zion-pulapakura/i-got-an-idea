@@ -1,4 +1,4 @@
-export function formatPublishedAt(iso: string) {
+export function formatPublishedDate(iso: string) {
   const parsed = new Date(iso);
   if (Number.isNaN(parsed.getTime())) {
     return "Unknown date";

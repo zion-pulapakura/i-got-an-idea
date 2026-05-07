@@ -1,10 +1,10 @@
-import type { MediaSourceError } from "../api/fetchLatestNews";
+"use client";
 
-type MediaSourceErrorsBannerProps = {
-  errors: MediaSourceError[];
-};
+import { useMediaUiStore } from "../store/media-ui-store";
 
-export function MediaSourceErrorsBanner({ errors }: MediaSourceErrorsBannerProps) {
+export function MediaSourceErrorsBanner() {
+  const errors = useMediaUiStore((s) => s.sourceErrors);
+
   if (errors.length === 0) {
     return null;
   }

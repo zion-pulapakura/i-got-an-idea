@@ -1,11 +1,12 @@
-import { MEDIA_SOURCES, type MediaSource } from "../api/fetchLatestNews";
+"use client";
 
-type MediaSourceFiltersProps = {
-  selectedSources: MediaSource[];
-  onToggle: (source: MediaSource) => void;
-};
+import { MEDIA_SOURCES } from "../api/fetchLatestNews";
+import { useMediaUiStore } from "../store/media-ui-store";
 
-export function MediaSourceFilters({ selectedSources, onToggle }: MediaSourceFiltersProps) {
+export function MediaSourceFilters() {
+  const selectedSources = useMediaUiStore((s) => s.selectedSources);
+  const toggleSelectedSource = useMediaUiStore((s) => s.toggleSelectedSource);
+
   return (
     <div className="mt-7 flex flex-wrap items-center gap-6">
       {MEDIA_SOURCES.map((source) => (
@@ -13,7 +14,7 @@ export function MediaSourceFilters({ selectedSources, onToggle }: MediaSourceFil
           <input
             type="checkbox"
             checked={selectedSources.includes(source)}
-            onChange={() => onToggle(source)}
+            onChange={() => toggleSelectedSource(source)}
             className="h-4 w-4 accent-brand-dark"
           />
           <span>{source}</span>

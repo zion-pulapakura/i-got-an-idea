@@ -1,46 +1,23 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useState } from "react";
 
-import {
-  fetchLatestNews,
-  MEDIA_SOURCES,
-  type MediaItem,
-  type MediaSource,
-  type MediaSourceError,
-} from "./api/fetchLatestNews";
+import { fetchLatestNews, type MediaItem } from "./api/fetchLatestNews";
 import { MediaErrorBanner } from "./components/media-error-banner";
 import { MediaFetchBtn } from "./components/media-fetch-btn";
 import { MediaSourceErrorsBanner } from "./components/media-source-errors-banner";
 import { MediaSourceFilters } from "./components/media-source-filters";
 import { MediaStoriesPanel } from "./components/media-stories-panel";
+import { useMediaUiStore } from "./store/media-ui-store";
 
 export default function MediaPage() {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [sourceErrors, setSourceErrors] = useState<MediaSourceError[]>([]);
   const [items, setItems] = useState<MediaItem[]>([]);
-  const [selectedSources, setSelectedSources] = useState<MediaSource[]>([...MEDIA_SOURCES]);
-
-  const hasSelection = selectedSources.length > 0;
-
-  const selectedCountLabel = useMemo(() => {
-    if (selectedSources.length === 1) {
-      return "1 source selected";
-    }
-    return `${selectedSources.length} sources selected`;
-  }, [selectedSources.length]);
-
-  const toggleSource = (source: MediaSource) => {
-    setSelectedSources((prev) =>
-      prev.includes(source)
-        ? prev.filter((value) => value !== source)
-        : [...prev, source],
-    );
-  };
 
   const runFetch = async () => {
-    if (!hasSelection) {
+    const { selectedSources, setLoading, setError, setSourceErrors } =
+      useMediaUiStore();
+
+    if (selectedSources.length === 0) {
       setError("Pick at least one source.");
       setItems([]);
       setSourceErrors([]);
@@ -74,17 +51,13 @@ export default function MediaPage() {
           Latest tech news feed
         </p>
 
-        <MediaSourceFilters selectedSources={selectedSources} onToggle={toggleSource} />
+        <MediaSourceFilters />
 
-        <MediaFetchBtn
-          selectedCountLabel={selectedCountLabel}
-          loading={loading}
-          onFetch={runFetch}
-        />
+        <MediaFetchBtn onFetch={runFetch} />
 
-        <MediaErrorBanner message={error} />
-        <MediaSourceErrorsBanner errors={sourceErrors} />
-        <MediaStoriesPanel loading={loading} error={error} items={items} />
+        <MediaErrorBanner />
+        <MediaSourceErrorsBanner />
+        <MediaStoriesPanel items={items} />
       </section>
     </main>
   );
