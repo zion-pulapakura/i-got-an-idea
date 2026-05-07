@@ -1,29 +1,22 @@
-import type { MediaSource } from "../api/fetchLatestNews";
-
-type SourceOption = { id: MediaSource; label: string };
+import { MEDIA_SOURCES, type MediaSource } from "../api/fetchLatestNews";
 
 type MediaSourceFiltersProps = {
-  options: readonly SourceOption[];
   selectedSources: MediaSource[];
   onToggle: (source: MediaSource) => void;
 };
 
-export function MediaSourceFilters({
-  options,
-  selectedSources,
-  onToggle,
-}: MediaSourceFiltersProps) {
+export function MediaSourceFilters({ selectedSources, onToggle }: MediaSourceFiltersProps) {
   return (
     <div className="mt-7 flex flex-wrap items-center gap-6">
-      {options.map((source) => (
-        <label key={source.id} className="inline-flex cursor-pointer items-center gap-2 text-base">
+      {MEDIA_SOURCES.map((source) => (
+        <label key={source} className="inline-flex cursor-pointer items-center gap-2 text-base">
           <input
             type="checkbox"
-            checked={selectedSources.includes(source.id)}
-            onChange={() => onToggle(source.id)}
+            checked={selectedSources.includes(source)}
+            onChange={() => onToggle(source)}
             className="h-4 w-4 accent-brand-dark"
           />
-          <span>{source.label}</span>
+          <span>{source}</span>
         </label>
       ))}
     </div>

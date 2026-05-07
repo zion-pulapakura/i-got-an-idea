@@ -1,5 +1,4 @@
-export const MEDIA_SOURCES = ["medium", "hackernews"] as const;
-
+export const MEDIA_SOURCES = ["Hacker News", "Medium"] as const;
 export type MediaSource = (typeof MEDIA_SOURCES)[number];
 
 export type MediaItem = {

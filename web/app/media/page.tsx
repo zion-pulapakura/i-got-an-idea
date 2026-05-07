@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 
 import {
   fetchLatestNews,
-  MEDIA_SOURCE_OPTIONS,
+  MEDIA_SOURCES,
   type MediaItem,
   type MediaSource,
   type MediaSourceError,
@@ -20,9 +20,7 @@ export default function MediaPage() {
   const [error, setError] = useState<string | null>(null);
   const [sourceErrors, setSourceErrors] = useState<MediaSourceError[]>([]);
   const [items, setItems] = useState<MediaItem[]>([]);
-  const [selectedSources, setSelectedSources] = useState<MediaSource[]>(
-    MEDIA_SOURCE_OPTIONS.map((source) => source.id),
-  );
+  const [selectedSources, setSelectedSources] = useState<MediaSource[]>([...MEDIA_SOURCES]);
 
   const hasSelection = selectedSources.length > 0;
 
@@ -76,11 +74,7 @@ export default function MediaPage() {
           Latest tech news feed
         </p>
 
-        <MediaSourceFilters
-          options={MEDIA_SOURCE_OPTIONS}
-          selectedSources={selectedSources}
-          onToggle={toggleSource}
-        />
+        <MediaSourceFilters selectedSources={selectedSources} onToggle={toggleSource} />
 
         <MediaFetchBtn
           selectedCountLabel={selectedCountLabel}

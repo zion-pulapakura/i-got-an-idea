@@ -13,7 +13,7 @@ type HackerNewsItem = {
 };
 
 export const hackerNewsAdapter: MediaSourceAdapter = {
-  source: "hackernews",
+  source: "Hacker News",
   fetchLatest: async (limit: number): Promise<MediaItem[]> => {
     const topStoriesRes = await fetch(HN_TOP_STORIES_URL);
     if (!topStoriesRes.ok) {
@@ -37,7 +37,7 @@ export const hackerNewsAdapter: MediaSourceAdapter = {
       .filter((item) => item.type === "story" && Boolean(item.title))
       .slice(0, limit)
       .map((item) => ({
-        source: "hackernews",
+        source: "Hacker News",
         title: item.title ?? "Untitled story",
         url: item.url ?? "https://news.ycombinator.com",
         publishedAt: new Date((item.time ?? 0) * 1000).toISOString(),

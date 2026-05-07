@@ -37,7 +37,6 @@ const fetchLatestMediaController = async (req: Request, res: Response) => {
     const validSources = sources.filter(isMediaSource);
 
     const response = await fetchLatestMedia(validSources);
-    console.log(response)
 
     res.status(200).json(response);
   } catch (error) {

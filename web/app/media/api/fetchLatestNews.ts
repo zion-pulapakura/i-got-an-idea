@@ -2,12 +2,8 @@ import getHeaders from "../../utils/getHeaders";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
-export const MEDIA_SOURCE_OPTIONS = [
-  { id: "medium", label: "Medium" },
-  { id: "hackernews", label: "Hacker News" },
-] as const;
-
-export type MediaSource = (typeof MEDIA_SOURCE_OPTIONS)[number]["id"];
+export const MEDIA_SOURCES = ["Hacker News", "Medium"] as const;
+export type MediaSource = (typeof MEDIA_SOURCES)[number];
 
 export type MediaItem = {
   source: MediaSource;

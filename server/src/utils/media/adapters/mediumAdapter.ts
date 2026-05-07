@@ -30,7 +30,7 @@ const toIsoDate = (dateString?: string) => {
 };
 
 export const mediumAdapter: MediaSourceAdapter = {
-  source: "medium",
+  source: "Medium",
   fetchLatest: async (limit: number): Promise<MediaItem[]> => {
     const response = await fetch(MEDIUM_TECH_RSS_URL);
     if (!response.ok) {
@@ -47,7 +47,7 @@ export const mediumAdapter: MediaSourceAdapter = {
       const rawAuthor = getTag(itemBlock, "dc:creator");
 
       return {
-        source: "medium",
+        source: "Medium",
         title: decodeHtmlEntities(stripCdata(rawTitle)),
         url: decodeHtmlEntities(stripCdata(rawLink)),
         publishedAt: toIsoDate(rawPubDate),
