@@ -1,21 +1,20 @@
 "use client";
 
 import { useState } from "react";
-
-import { fetchLatestNews, type MediaItem } from "./api/fetchLatestNews";
-import { MediaErrorBanner } from "./components/media-error-banner";
-import { MediaFetchBtn } from "./components/media-fetch-btn";
-import { MediaSourceErrorsBanner } from "./components/media-source-errors-banner";
-import { MediaSourceFilters } from "./components/media-source-filters";
-import { MediaStoriesPanel } from "./components/media-stories-panel";
 import { useMediaUiStore } from "./store/media-ui-store";
 
-export default function MediaPage() {
+import { fetchLatestNews, type MediaItem } from "./api/fetchLatestNews";
+import { ErrorBanner } from "./components/error-banner";
+import { FetchBtn } from "./components/fetch-btn";
+import { SourceErrorsBanner } from "./components/source-errors-banner";
+import { SourceFilters } from "./components/source-filters";
+import { StoriesPanel } from "./components/stories-panel";
+
+export default function Page() {
   const [items, setItems] = useState<MediaItem[]>([]);
 
   const runFetch = async () => {
-    const { selectedSources, setLoading, setError, setSourceErrors } =
-      useMediaUiStore();
+    const { selectedSources, setLoading, setError, setSourceErrors } = useMediaUiStore.getState();
 
     if (selectedSources.length === 0) {
       setError("Pick at least one source.");
@@ -51,13 +50,13 @@ export default function MediaPage() {
           Latest tech news feed
         </p>
 
-        <MediaSourceFilters />
+        <SourceFilters />
 
-        <MediaFetchBtn onFetch={runFetch} />
+        <FetchBtn onFetch={runFetch} />
 
-        <MediaErrorBanner />
-        <MediaSourceErrorsBanner />
-        <MediaStoriesPanel items={items} />
+        <ErrorBanner />
+        <SourceErrorsBanner />
+        <StoriesPanel items={items} />
       </section>
     </main>
   );

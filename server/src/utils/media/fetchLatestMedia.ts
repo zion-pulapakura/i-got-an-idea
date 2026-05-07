@@ -27,6 +27,8 @@ export const fetchLatestMedia = async (
     }),
   );
 
+  console.log("settled");
+  console.log(settled);
   const items: MediaItem[] = [];
   const errors: MediaSourceError[] = [];
 

@@ -2,15 +2,14 @@
 
 import type { MediaItem } from "../api/fetchLatestNews";
 import { useMediaUiStore } from "../store/media-ui-store";
-import { MediaStoryCard } from "./media-story-card";
+import { StoryCard } from "./story-card";
 
 type Props = {
   items: MediaItem[];
 };
 
-export function MediaStoriesPanel({ items }: Props) {
-  const loading = useMediaUiStore((s) => s.loading);
-  const error = useMediaUiStore((s) => s.error);
+export function StoriesPanel({ items }: Props) {
+  const { loading, error } = useMediaUiStore();
   const hasItems = items.length > 0;
 
   return (
@@ -24,7 +23,7 @@ export function MediaStoriesPanel({ items }: Props) {
       {hasItems ? (
         <ul className="space-y-3">
           {items.map((item) => (
-            <MediaStoryCard key={`${item.source}-${item.url}`} item={item} />
+            <StoryCard key={`${item.source}-${item.url}`} item={item} />
           ))}
         </ul>
       ) : null}

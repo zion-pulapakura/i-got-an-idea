@@ -2,7 +2,7 @@
 
 import { useMediaUiStore } from "../store/media-ui-store";
 
-export function MediaErrorBanner() {
+export function ErrorBanner() {
   const { error } = useMediaUiStore();
 
   if (!error) {

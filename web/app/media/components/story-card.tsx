@@ -5,7 +5,7 @@ type Props = {
   item: MediaItem;
 };
 
-export function MediaStoryCard({ item }: Props) {
+export function StoryCard({ item }: Props) {
   return (
     <li className="rounded-lg border border-brand-black/20 bg-white p-4">
       <p className="text-xs uppercase tracking-[0.2em] text-brand-dark/70">{item.source}</p>

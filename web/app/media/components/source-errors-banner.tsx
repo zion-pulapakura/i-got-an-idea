@@ -2,10 +2,10 @@
 
 import { useMediaUiStore } from "../store/media-ui-store";
 
-export function MediaSourceErrorsBanner() {
-  const errors = useMediaUiStore((s) => s.sourceErrors);
+export function SourceErrorsBanner() {
+  const { sourceErrors } = useMediaUiStore();
 
-  if (errors.length === 0) {
+  if (sourceErrors.length === 0) {
     return null;
   }
 
@@ -13,7 +13,7 @@ export function MediaSourceErrorsBanner() {
     <div className="mt-5 rounded-lg border border-amber-300 bg-amber-100 px-3 py-2 text-sm text-amber-900">
       <p className="font-semibold">Some sources failed:</p>
       <ul className="mt-2 space-y-1">
-        {errors.map((sourceError) => (
+        {sourceErrors.map((sourceError) => (
           <li key={`${sourceError.source}-${sourceError.message}`}>
             {sourceError.source}: {sourceError.message}
           </li>

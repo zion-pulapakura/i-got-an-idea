@@ -3,9 +3,8 @@
 import { MEDIA_SOURCES } from "../api/fetchLatestNews";
 import { useMediaUiStore } from "../store/media-ui-store";
 
-export function MediaSourceFilters() {
-  const selectedSources = useMediaUiStore((s) => s.selectedSources);
-  const toggleSelectedSource = useMediaUiStore((s) => s.toggleSelectedSource);
+export function SourceFilters() {
+  const { selectedSources, toggleSelectedSource } = useMediaUiStore();
 
   return (
     <div className="mt-7 flex flex-wrap items-center gap-6">

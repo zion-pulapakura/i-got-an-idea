@@ -9,16 +9,16 @@ type Props = {
   onFetch: () => void;
 };
 
-export function MediaFetchBtn({ onFetch }: Props) {
-  const loading = useMediaUiStore((s) => s.loading);
-  const count = useMediaUiStore((s) => s.selectedSources.length);
+export function FetchBtn({ onFetch }: Props) {
+  const { loading, selectedSources } = useMediaUiStore();
 
   const selectedCountLabel = useMemo(() => {
+    const count = selectedSources.length;
     if (count === 1) {
       return "1 source selected";
     }
     return `${count} sources selected`;
-  }, [count]);
+  }, [selectedSources.length]);
 
   return (
     <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
