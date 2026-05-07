@@ -7,7 +7,6 @@ export const MEDIA_SOURCE_OPTIONS = [
   { id: "hackernews", label: "Hacker News" },
 ] as const;
 
-// Add future adapters here once backend support lands.
 export type MediaSource = (typeof MEDIA_SOURCE_OPTIONS)[number]["id"];
 
 export type MediaItem = {
